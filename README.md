@@ -1,7 +1,6 @@
-<h1 style="text-align:center">Welcome to <code>roz</code> 👋</h1>
+<h1 align="center">Welcome to <code>roz</code> 👋</h1>
 
----
-<p style="text-align:center">
+<p align="center">
 
   ![GitHub License](https://badgen.net/github/license/lfdominguez/roz)
   ![GitHub Watchers](https://badgen.net/github/watchers/lfdominguez/roz)
