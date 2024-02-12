@@ -1,14 +1,10 @@
 <h1 align="center">Welcome to <code>roz</code> 👋</h1>
 
-<p align="center">
-
-  ![GitHub License](https://badgen.net/github/license/lfdominguez/roz)
-  ![GitHub Watchers](https://badgen.net/github/watchers/lfdominguez/roz)
-  ![GitHub Releases](https://badgen.net/github/releases/lfdominguez/roz)
-  ![GitHub Release](https://badgen.net/github/release/lfdominguez/roz)
-  ![GitHub License](https://badgen.net/github/stars/lfdominguez/roz)
-
-</p>
+![GitHub License](https://badgen.net/github/license/lfdominguez/roz)
+![GitHub Watchers](https://badgen.net/github/watchers/lfdominguez/roz)
+![GitHub Releases](https://badgen.net/github/releases/lfdominguez/roz)
+![GitHub Release](https://badgen.net/github/release/lfdominguez/roz)
+![GitHub License](https://badgen.net/github/stars/lfdominguez/roz)
 
 > CLI that generates `ollama` suggest reading your input.
 
