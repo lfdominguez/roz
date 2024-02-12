@@ -1,0 +1,27 @@
+[package]
+name = "roz"
+description = "Ollama CLI interface"
+authors = ["Luis Felipe Domínguez Vega <ldominguezvega@gmail.com>"]
+license = "MIT"
+license-file = "LICENSE"
+readme = "README.md"
+homepage = "https://github.com/lfdominguez/roz"
+repository = "https://github.com/lfdominguez/roz"
+keywords = ["ollama", "llama", "ia", "git", "commit"]
+categories = ["command-line-utilities"]
+version = "0.1.0"
+edition = "2021"
+
+exclude = [
+    "flake*",
+]
+
+[dependencies]
+git2 = "0.18.2"
+ollama-rs = "0.1.6"
+
+[profile.release]
+opt-level = 's'  # Optimize for speed.
+lto = true
+codegen-units = 1
+panic = 'abort'
