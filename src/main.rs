@@ -25,14 +25,14 @@ async fn main() -> Result<(), std::io::Error>
         std::io::Error::new(ErrorKind::NotConnected, err)
     })?;
 
-    let input = match args.mode {
+    let request = match args.mode {
         args::Mode::GitCommit => {
             let repo = match git2::Repository::open("./") {
                 Ok(repo) => repo,
                 Err(e) => panic!("Failed to open git repository: {}", e),
             };
 
-            String::new()
+            GenerationRequest::new(args.ollama_model, String::new()).system("".to_string())
         }
         args::Mode::GitDiff => {
             let repo = match git2::Repository::open("./") {
@@ -61,10 +61,10 @@ async fn main() -> Result<(), std::io::Error>
                 std::io::Error::new(ErrorKind::BrokenPipe, err)
             })?;
 
-            diff_lines.join("")
+            GenerationRequest::new(args.ollama_model, diff_lines.join("")).system("".to_string())
         }
         args::Mode::Interactive => {
-            if args.input == "-" {
+            let input = if args.input == "-" {
                 let stdin = std::io::stdin();
                 let mut handle = stdin.lock();
 
@@ -77,17 +77,17 @@ async fn main() -> Result<(), std::io::Error>
                 })?
             } else {
                 args.input.to_string()
-            }
+            };
+
+            GenerationRequest::new(args.ollama_model, input).system("You're a CLI interface that ask something and respond".to_string())
         }
     };
-
-    let mut stdout = tokio::io::stdout();
-
-    let request = GenerationRequest::new(args.ollama_model, input);
 
     let mut stream: GenerationResponseStream = ollama.generate_stream(request).await.map_err(|err| {
         std::io::Error::new(ErrorKind::BrokenPipe, err)
     })?;
+
+    let mut stdout = tokio::io::stdout();
 
     while let Some(Ok(res)) = stream.next().await {
         for ele in res {
